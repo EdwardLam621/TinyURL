@@ -34,10 +34,7 @@ public class TinyURL {
     	 if (longToShortMap.containsKey(url)) {
     		 return longToShortMap.get(url);
     	 }
-    	 String shortURL = generateShortURL();
-    	 longToShortMap.put(url, shortURL);
-    	 shortToLongMap.put(shortURL, url);
-    	 return shortURL;
+    	 return error;
      }
      
 

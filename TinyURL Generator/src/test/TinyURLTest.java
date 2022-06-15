@@ -9,27 +9,36 @@ import pkg.TinyURL;
 public class TinyURLTest {
 
 	@Test
-	public void addTinyURL() {
+	public void longToShortTest() {
 		
 		TinyURL t = new TinyURL();
 		
 		String shortURL1 = t.longToShort("URL");
-		String shortURL2 = t.longToShort("URL2");
 		assertEquals(shortURL1, t.shortToLong("URL"));		//should pass
+		
+		String shortURL2 = t.longToShort("URL2");
 		assertNotEquals(shortURL2, t.shortToLong("URL"));	//should fail, because shortURL2 and return are not identical
 		assertEquals(shortURL2, t.shortToLong("URL2"));		//should pass
+		
 	}
 	
 	@Test
-	public void getTinyURL() {
+	public void shortToLongTest() {
 		
 		TinyURL t = new TinyURL();
 		
 		String shortURL1 = t.longToShort("URL");
-		String shortURL2 = t.longToShort("URL2");
-		assertEquals(shortURL1, t.shortToLong("URL"));		//should pass
-		assertNotEquals(shortURL2, t.shortToLong("URL"));	//should fail, because shortURL2 and return are not identical
-		assertEquals(shortURL2, t.shortToLong("URL2"));		//should pass
+		assertEquals(shortURL1, t.shortToLong("URL"));			//should pass
+		assertEquals("Error Message!", t.shortToLong("URL2"));	//should fail because URL2 was not recorded
+		
+
+	}
+	
+	@Test
+	public void createCustomURLTest() {
+		
+		TinyURL t = new TinyURL();
+		
 	}
 	
 }
