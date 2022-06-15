@@ -1,27 +1,55 @@
 package pkg;
 
 import java.util.HashMap;
+import java.util.Random;
 
 public class TinyURL {
-    /*
-     * @param url: a long url
-     * @return: a short url starts with http://tiny.url/
-     */
 
-     private final String prefix = "http://tiny.url/";
+
+     private String prefix = "http://tiny.url/";
      private HashMap<String, String> longToShortMap = new HashMap<>();
      private HashMap<String, String> shortToLongMap = new HashMap<>();
      private String chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
      
+     /*
+      * @param url: a long url
+      * @return: a short url starts with http://tiny.url/
+      */
      public String longToShort (String url) {
-    	 
+    	 if (longToShortMap.containsKey(url)) {
+    		 return longToShortMap.get(url);
+    	 }
+    	 String shortURL = generateShortURL();
+    	 longToShortMap.put(url, shortURL);
+    	 shortToLongMap.put(shortURL,url);
+    	 return shortURL;
      }
      
+     /*
+      * @param url: a short url
+      * @return: a long url that represent to the shortURL
+      */
      public String ShortToLong (String url) {
     	 
      }
      
+
      private String generateShortURL() {
+    	 Random r = new Random();
+    	 StringBuilder sb = new StringBuilder();
     	 
+    	 while (true) {
+    		 int count = 6;
+    		 while (count > 0) {
+    			 sb.append(chars.charAt(r.nextInt(chars.length())));
+    			 count--;
+    		 }
+    		 String shortURL = prefix = sb.toString();
+    		 if(shortToLongMap.containsKey(shortURL)) {
+    			 sb = new StringBuilder();
+    		 } else {
+    			 return shortURL;
+    		 }
+    	 }
      }
 }
