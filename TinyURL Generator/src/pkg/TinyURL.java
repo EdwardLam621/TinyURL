@@ -30,7 +30,13 @@ public class TinyURL {
       * @return: a long url that represent to the shortURL
       */
      public String ShortToLong (String url) {
-    	 
+    	 if (longToShortMap.containsKey(url)) {
+    		 return longToShortMap.get(url);
+    	 }
+    	 String shortURL = generateShortURL();
+    	 longToShortMap.put(url, shortURL);
+    	 shortToLongMap.put(shortURL, url);
+    	 return shortURL;
      }
      
 
