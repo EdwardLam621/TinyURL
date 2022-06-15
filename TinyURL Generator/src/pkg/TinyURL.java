@@ -29,7 +29,7 @@ public class TinyURL {
       * @param url: a short url
       * @return: a long url that represent to the shortURL
       */
-     public String ShortToLong (String url) {
+     public String shortToLong (String url) {
     	 if (longToShortMap.containsKey(url)) {
     		 return longToShortMap.get(url);
     	 }
@@ -58,4 +58,5 @@ public class TinyURL {
     		 }
     	 }
      }
+
 }
