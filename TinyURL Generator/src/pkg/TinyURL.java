@@ -10,6 +10,7 @@ public class TinyURL {
      private HashMap<String, String> longToShortMap = new HashMap<>();
      private HashMap<String, String> shortToLongMap = new HashMap<>();
      private String chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+     private String error = "Error Message!";
      
      /*
       * @param url: a long url
@@ -50,13 +51,29 @@ public class TinyURL {
     			 sb.append(chars.charAt(r.nextInt(chars.length())));
     			 count--;
     		 }
-    		 String shortURL = prefix = sb.toString();
+    		 String shortURL = prefix + sb.toString();
     		 if(shortToLongMap.containsKey(shortURL)) {
     			 sb = new StringBuilder();
     		 } else {
     			 return shortURL;
     		 }
     	 }
+     }
+     
+     private String createCustomShortURL(String longURL, String key) {
+    	 if (longToShortMap.containsKey(longURL)) {
+    		 if(!longToShortMap.get(longURL).equals(prefix + key)) {
+    			 return error;
+    		 }
+    		 return longToShortMap.get(longURL);
+    	 }
+    	 String shortURL = prefix + key;
+    	 if(shortToLongMap.containsKey(shortURL)) {
+    		 return error;
+    	 }
+    	 shortToLongMap.put(shortURL, longURL);
+    	 longToShortMap.put(longURL, shortURL);
+    	 return shortURL;
      }
 
 }
