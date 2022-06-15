@@ -1,15 +1,13 @@
 package test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-//import org.junit.jupiter.api.Test;
-
 import pkg.TinyURL;
 
-class TinyURLTest {
-	
+public class TinyURLTest {
+
 	@Test
 	public void addTinyURL() {
 		
@@ -18,8 +16,7 @@ class TinyURLTest {
 		String shortURL1 = t.longToShort("URL");
 		String shortURL2 = t.longToShort("URL2");
 		assertEquals(shortURL1, t.shortToLong("URL"));
-		assertEquals(shortURL2, t.shortToLong("URL"));
+		assertNotEquals(shortURL2, t.shortToLong("URL"));
 	}
 	
-
 }
